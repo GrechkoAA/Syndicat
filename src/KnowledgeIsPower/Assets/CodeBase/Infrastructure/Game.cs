@@ -10,6 +10,7 @@ namespace CodeBase.Infrastructure
     public Game()
     {
       RegisterInputService();
+      Debug.Log(InputService);
     }
 
     private static void RegisterInputService()
