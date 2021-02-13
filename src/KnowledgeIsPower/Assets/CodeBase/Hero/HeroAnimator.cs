@@ -6,6 +6,8 @@ namespace CodeBase.Hero
 {
   public class HeroAnimator : MonoBehaviour, IAnimationStateReader
   {
+    [SerializeField] private CharacterController _characterController;
+    
     private static readonly int MoveHash = Animator.StringToHash("Walking");
     private static readonly int AttackHash = Animator.StringToHash("AttackNormal");
     private static readonly int HitHash = Animator.StringToHash("Hit");
@@ -23,6 +25,11 @@ namespace CodeBase.Hero
     public AnimatorState State { get; private set; }
     
     public Animator Animator;
+
+    private void Update()
+    {
+      Animator.SetFloat(MoveHash,_characterController.velocity.magnitude, 0.1f, Time.deltaTime);
+    }
 
     public bool IsAttacking => State == AnimatorState.Attack;
     
